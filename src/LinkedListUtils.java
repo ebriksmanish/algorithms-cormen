@@ -1,6 +1,5 @@
 
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -80,23 +79,27 @@ public class LinkedListUtils {
 		}
 		
 		Iterator<Integer> listIterator = one.iterator();
-		Iterator<Integer> sequenceIterator = two.iterator();
 		boolean match = false;
-		while (listIterator.hasNext()) {
+
+		while (listIterator.hasNext() && !match) {
 			Integer listInteger = (Integer) listIterator.next();
+			Iterator<Integer> sequenceIterator = two.iterator();
+
 			while (sequenceIterator.hasNext()) {
 				Integer sequenceInteger = (Integer) sequenceIterator.next();
-				if (listInteger == sequenceInteger && listIterator.hasNext()) {
-					listInteger = listIterator.next();
+				
+				if (listInteger == sequenceInteger) {		
 					match = true;
-				} else {
-					if (match) {
-						sequenceIterator = two.iterator();	
+					if (listIterator.hasNext()) {
+						listInteger = listIterator.next();
 					}
+				} else {
 					match = false;
+					break;
 				}
 			}
 		}
+
 		return match;
 	}
 }

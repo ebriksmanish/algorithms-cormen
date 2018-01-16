@@ -14,16 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>homework1-tests.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/minions/linked-list/homework1-tests.jar</locationURI>
-		</link>
-		<link>
-			<name>junit-dist.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/minions/linked-list/junit-dist.jar</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
