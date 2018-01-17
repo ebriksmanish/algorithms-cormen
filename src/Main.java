@@ -1,9 +1,12 @@
+import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		/*LinkedList<Integer> list = new LinkedList<>();
 
@@ -35,7 +38,7 @@ public class Main {
 		LinkedListUtils.removeMaximumValues(list, 3);
 		System.out.println(list);*/
 		
-		LinkedList<Integer> list1 = new LinkedList<>();
+		/*LinkedList<Integer> list1 = new LinkedList<>();
 		LinkedList<Integer> list2 = new LinkedList<>();
 		list1.add(1);
 		list1.add(2);
@@ -52,7 +55,27 @@ public class Main {
 		list2.add(8);
 		boolean result = LinkedListUtils.containsSubsequence(list1, list2);
 		
-		System.out.println(result);
+		System.out.println(result);*/
+		Queue<HtmlTag> tags = HtmlReader.getTagsFromHtmlFile("C:\\Users\\Daniela\\workspace\\DataStructures\\test5.html");
+		//Queue<HtmlTag> tags = new LinkedList<>();
+		//tags.add(new HtmlTag("b", false));
+		/*tags.add(new HtmlTag("i", true));
+		tags.add(new HtmlTag("i", false));
+		tags.add(new HtmlTag("b", false));
+		tags.add(new HtmlTag("b", false));
+		tags.add(new HtmlTag("html", false));*/
+		//tags.add(new HtmlTag("p", false));
+		//tags.add(new HtmlTag("i", true));
+		//tags.add(new HtmlTag("i", false));
+		//tags.add(new HtmlTag("u", false));
+		
+		System.out.println(tags);
+		
+		Stack<HtmlTag> stack = HtmlValidator.isValidHtml(tags );
+		
+		System.out.println(stack);
+		//System.out.println(tags);
+		
 	}
 
 }
