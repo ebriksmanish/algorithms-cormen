@@ -57,4 +57,11 @@ public class Word implements Comparable<Word> {
 	public int compareTo(Word o) {
 		return text.compareTo(o.text);
 	}
+
+	@Override
+	public String toString() {
+		return "Word [text=" + text + ", count=" + count + ", total=" + total + "]";
+	}
+	
+	
 }

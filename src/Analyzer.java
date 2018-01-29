@@ -1,15 +1,15 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
-import javax.swing.ButtonGroup;
-
 /*
  * SD2x Homework #3
  * Implement the methods below according to the specification in the assignment description.
@@ -44,9 +44,9 @@ public class Analyzer {
 			
 			bufferReader.close();
 			return result;
-		} catch (NullPointerException e) {
+		} catch (NullPointerException npException) {
 			return result;
-		} catch (IOException e1) {
+		} catch (IOException ioException) {
 			return result;
 		}
 	}	
@@ -56,8 +56,38 @@ public class Analyzer {
 	public static Set<Word> allWords(List<Sentence> sentences) {
 
 		/* IMPLEMENT THIS METHOD! */
+		Set<Word> result = new HashSet<>();
+		Map<String, Word> tempResult = new HashMap<>();
+
+		if (sentences == null || sentences.isEmpty()) {
+			return result;
+		}
 		
-		return null; // this line is here only so this code will compile if you don't modify it
+		Iterator<Sentence> iterator = sentences.iterator();
+		while(iterator.hasNext()) {
+			Sentence sentence = iterator.next();
+
+			if (sentence != null) {
+				String text = sentence.getText();
+				String[] words = text.split(" ");
+				
+				for (int index = 0; index < words.length; index++) {
+					String word = words[index];
+
+					if (word.length() > 1 && word.matches("^[a-zA-Z].*")) {
+						word = word.toLowerCase().split("[\\W]")[0];
+						Word savedWord = tempResult.get(word);
+						if (savedWord == null) {
+							savedWord = new Word(word);
+							tempResult.put(word, savedWord);
+						}
+						savedWord.increaseTotal(sentence.score);
+					}
+				}
+			}
+		}
+		
+		return new HashSet<>(tempResult.values());
 
 	}
 	
@@ -88,7 +118,6 @@ public class Analyzer {
 	 * You may modify it as needed.
 	 */
 	public static void main(String[] args) {
-		System.out.println(("hola".substring(2)));
 		if (args.length == 0) {
 			System.out.println("Please specify the name of the input file");
 			System.exit(0);
