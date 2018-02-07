@@ -95,21 +95,49 @@ public class Analyzer {
 	 * Implement this method in Part 3
 	 */
 	public static Map<String, Double> calculateScores(Set<Word> words) {
-
-		/* IMPLEMENT THIS METHOD! */
+		Map<String, Double> result = new HashMap<>();
 		
-		return null; // this line is here only so this code will compile if you don't modify it
-
+		if (words == null || words.isEmpty()) {
+			return result;
+		}
+		
+		Iterator<Word> iterator = words.iterator();
+		
+		while (iterator.hasNext()) {
+			Word word = (Word) iterator.next();
+			if (word != null) {
+				result.put(word.getText(), word.calculateScore());	
+			}
+		}
+		
+		return result;
 	}
+
 	
 	/*
 	 * Implement this method in Part 4
 	 */
 	public static double calculateSentenceScore(Map<String, Double> wordScores, String sentence) {
-
-		/* IMPLEMENT THIS METHOD! */
 		
-		return 0; // this line is here only so this code will compile if you don't modify it
+		if (wordScores == null || sentence == null || sentence.isEmpty()) {
+			return 0;
+		}
+		
+
+		String[] words = sentence.split(" ");
+		double overallScore = 0;
+		int validWordsCount = 0;
+		for (int index = 0; index < words.length; index++) {
+			String word = words[index];
+			if (word.length() > 1 && word.matches("^[a-zA-Z].*")) {
+				word = word.toLowerCase().split("[\\W]")[0];
+				Double wordScore = wordScores.get(word);
+				overallScore += wordScore == null ? 0 : wordScore;
+				validWordsCount++;
+			}
+		}
+		
+		return validWordsCount > 0 ? overallScore / validWordsCount : 0;
 
 	}
 	
@@ -128,7 +156,6 @@ public class Analyzer {
 		String sentence = in.nextLine();
 		in.close();
 		List<Sentence> sentences = Analyzer.readFile(filename);
-		System.out.println(sentences);
 		Set<Word> words = Analyzer.allWords(sentences);
 		Map<String, Double> wordScores = Analyzer.calculateScores(words);
 		double score = Analyzer.calculateSentenceScore(wordScores, sentence);
