@@ -56,7 +56,7 @@ public class Main {
 		boolean result = LinkedListUtils.containsSubsequence(list1, list2);
 		
 		System.out.println(result);*/
-		Queue<HtmlTag> tags = HtmlReader.getTagsFromHtmlFile("C:\\Users\\Daniela\\workspace\\DataStructures\\test5.html");
+		//Queue<HtmlTag> tags = HtmlReader.getTagsFromHtmlFile("C:\\Users\\Daniela\\workspace\\DataStructures\\test5.html");
 		//Queue<HtmlTag> tags = new LinkedList<>();
 		//tags.add(new HtmlTag("b", false));
 		/*tags.add(new HtmlTag("i", true));
@@ -69,12 +69,25 @@ public class Main {
 		//tags.add(new HtmlTag("i", false));
 		//tags.add(new HtmlTag("u", false));
 		
-		System.out.println(tags);
+		/*System.out.println(tags);
 		
 		Stack<HtmlTag> stack = HtmlValidator.isValidHtml(tags );
 		
 		System.out.println(stack);
-		//System.out.println(tags);
+		System.out.println(tags);*/
+		
+		BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+		tree.add(8);
+		tree.add(6);
+		tree.add(4);
+		tree.add(2);
+		tree.add(16);
+		tree.add(10);
+		tree.add(20);
+		tree.add(9);
+		tree.add(12);
+		boolean balanced = tree.isBalanced(tree.findNode(4));
+		System.out.println(balanced);
 		
 	}
 
