@@ -190,26 +190,23 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			return false;
 		}
 		
-		if (n.leftChild == null && n.rightChild ==  null) {
+		return isBalanced2(n);
+	}
+	
+	private boolean isBalanced2(Node n) {
+		if (n == null) {
 			return true;
 		}
 
+		if (n.leftChild == null && n.rightChild ==  null) {
+			return true;
+		}
 		
 		int lHeight = height(n.leftChild);
 		int rHeight = height(n.rightChild);
-		boolean isBalanced = Math.abs(lHeight - rHeight) <= 1;
-		
-		if (n.leftChild != null) {
-			isBalanced = isBalanced && isBalanced(n.leftChild);
-		}
-		
-		if (n.rightChild != null) {
-			isBalanced = isBalanced && isBalanced(n.rightChild);
-		}
-		
-		return isBalanced;
+		return Math.abs(lHeight - rHeight) <= 1 && isBalanced2(n.leftChild) && isBalanced2(n.rightChild);
 	}
-	
+
 	// Method #5. .
 	public boolean isBalanced() {
 		return this.isBalanced(root);
