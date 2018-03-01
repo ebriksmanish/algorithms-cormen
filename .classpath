@@ -7,5 +7,7 @@
 	<classpathentry kind="lib" path="homework2-tests.jar"/>
 	<classpathentry kind="lib" path="homework3-tests.jar"/>
 	<classpathentry kind="lib" path="homework4-tests.jar"/>
+	<classpathentry kind="lib" path="homework5-tests.jar"/>
+	<classpathentry kind="lib" path="homework6-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
