@@ -1,6 +1,4 @@
 
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +15,16 @@ public class GraphUtils {
 			return -1;
 		}
 		
-		return (new DepthFirstSearch(graph)).dfs(src, dest);
+		if (!graph.containsElement(src) || !graph.containsElement(dest)) {
+			return -1;
+		}
+	
+		if (src.equals(dest)) {
+			return 0;
+		}
+
+		
+		return (new DepthFirstSearch(graph)).dfs2(graph.getNode(src), dest);
 	}
 	
 

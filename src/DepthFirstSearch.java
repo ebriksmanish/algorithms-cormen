@@ -39,20 +39,8 @@ public class DepthFirstSearch {
 			return false;
 		}
 	}
-	
-	public int dfs(String from, String to) {
-		if (!graph.containsElement(from) || !graph.containsElement(to)) {
-				return -1;
-		}
-		
-		if (from.equals(to)) {
-			return 0;
-		}
 
-		return dfs2(graph.getNode(from), to);
-	}
-
-	private int dfs2(Node start, String elementToFind) {
+	public int dfs2(Node start, String elementToFind) {
 		LinkedList<Integer> distances = new LinkedList<>();
 		Set<Node> neighbors = graph.getNodeNeighbors(start);
 		marked.add(start);
@@ -75,9 +63,5 @@ public class DepthFirstSearch {
 		return distances.size() > 0 && neighbors.size() > 0 ?
 				Collections.min(distances) : -1;
 	}
-
-	
-	
-	
 
 }
