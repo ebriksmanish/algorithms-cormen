@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -89,8 +90,19 @@ public class Main {
 		boolean balanced = tree.isBalanced(tree.findNode(4));
 		System.out.println(balanced);*/
 		
-		Graph graph = GraphBuilder.buildUndirectedGraph("C://Users//Daniela//workspace//DataStructures//graph_builder_test.txt");
-		int result = GraphUtils.minDistance(graph, "4", "6");
+		//[0, 1, 2, 3, 4, 5, 0]
+		List<String> l = new LinkedList<>();
+		l.add("0");
+		l.add("1");
+		l.add("2");
+		l.add("3");
+		l.add("4");
+		l.add("5");
+		l.add("0");
+		Graph graph = GraphBuilder.buildDirectedGraph("C://Users//Daniela//workspace//DataStructures//is_hamiltonian_path_test.txt");
+		
+		//System.out.println(graph.getNodeNeighbors(graph.getNode("0")));
+		boolean result = GraphUtils.isHamiltonianPath(graph, l);
 		System.out.println(result);
 		
 		//System.out.println((new DepthFirstSearch(graph)).dfs(graph.getNode("1"), "8"));
@@ -98,3 +110,5 @@ public class Main {
 	}
 
 }
+
+

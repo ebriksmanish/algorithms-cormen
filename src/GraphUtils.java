@@ -30,17 +30,54 @@ public class GraphUtils {
 
 	public static Set<String> nodesWithinDistance(Graph graph, String src, int distance) {
 
-		/* IMPLEMENT THIS METHOD! */
+
 		
-		return null; // this line is here only so this code will compile if you don't modify it
+		return null;
 	}
 
 
 	public static boolean isHamiltonianPath(Graph g, List<String> values) {
-
-		/* IMPLEMENT THIS METHOD! */
+		if (g == null || values == null || values.isEmpty()) {
+			return false;
+		}
 		
-		return true; // this line is here only so this code will compile if you don't modify it
+		String firstValue = values.get(0);
+		Node firstNode = g.getNode(firstValue);
+		
+		if (!g.containsNode(firstNode)) {
+			return false;
+		}
+		
+		if (values.size()-1 != g.getAllNodes().size()) {
+			return false;
+		}
+		
+		Node lastNode = firstNode;
+		for (int i = 1; i < values.size(); i++) {
+			String value = values.get(i);
+			Set<Node> nodes = g.getNodeNeighbors(lastNode);
+			Node selectedNode = getNextNodeWithValue(nodes, value);
+			if (selectedNode == null) {
+				return false;
+			} else {
+				lastNode = selectedNode;
+			} 
+		}
+
+		return (lastNode).equals(firstNode);
+	}
+
+
+	private static Node getNextNodeWithValue(Set<Node> nodes, String value) {
+		Node result = null;
+		
+		for (Node node : nodes) {
+			if (node.element.equals(value)) {
+				result = node;
+			}
+		}
+		
+		return result;
 	}
 	
 }
